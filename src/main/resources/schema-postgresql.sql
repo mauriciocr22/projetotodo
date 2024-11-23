@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS tarefa (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL,
+    feita BOOLEAN NOT NULL
+);
