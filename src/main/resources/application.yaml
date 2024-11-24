@@ -4,10 +4,11 @@ spring:
     name: projetotodo
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/projetocrud
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://dpg-ct1b540gph6c73bh5r80-a.oregon-postgres.render.com:5432/projetotodo
+    username: projetotodo_user
+    password: 221bVyTl0LZJLHXzwZKQ9ZD6EVqmcnL6
     driver-class-name: org.postgresql.Driver
+    initialize: true
 
   jpa:
     hibernate:
