@@ -15,21 +15,17 @@
   <div class="form-container">
     <h1 th:text="${tarefa.id == null ? 'Criar Nova Tarefa' : 'Editar Tarefa'}"></h1>
     <form th:action="@{/nova}" th:object="${tarefa}" method="post">
-      <!-- Campo oculto para enviar o ID -->
       <input type="hidden" name="id" th:value="${tarefa.id}" />
 
-      <!-- Campo para a descrição da tarefa -->
       <label for="descricao">Descrição:</label>
       <input type="text" id="descricao" name="descricao" th:value="${tarefa.descricao}" required />
 
-      <!-- Checkbox para marcar como feita -->
       <label class="custom-checkbox">
         <input type="checkbox" id="feita" name="feita" th:checked="${tarefa.feita}" />
         Feita
         <span></span>
       </label>
 
-      <!-- Botão para salvar -->
       <button type="submit" class="create-task-button">Salvar</button>
     </form>
   </div>

@@ -10,6 +10,10 @@ body {
   height: 100vh;
 }
 
+h1 {
+  margin-bottom: 18px;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -168,4 +172,13 @@ input {
 
 .delete-all-done-button:hover {
   background-color: #bd1111;
+}
+
+.empty-task-message {
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  color: gray;
+  margin-top: 20px;
+  border-bottom: none;
 }

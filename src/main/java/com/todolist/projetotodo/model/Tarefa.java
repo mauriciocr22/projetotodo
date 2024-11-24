@@ -21,7 +21,6 @@ public class Tarefa {
     this.feita = feita;
   }
 
-  // Getters e Setters
   public Integer getId() {
     return id;
   }

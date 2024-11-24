@@ -17,36 +17,13 @@ public class TarefaController {
   @Autowired
   TarefaService tarefaService;
 
-  // Exibe a lista de tarefas na página principal
   @GetMapping
   public String listarTarefas(Model model) {
     model.addAttribute("tarefas", tarefaService.listarTodas());
-    model.addAttribute("novaTarefa", new Tarefa()); // Objeto para criar nova tarefa
+    model.addAttribute("novaTarefa", new Tarefa());
     return "tarefas/listar";
   }
 
-  // Página de estatísticas (mantida, caso necessário)
-  @GetMapping("/tarefas/estatisticas")
-  public String estatisticas(Model model) {
-    int totalTarefas = tarefaService.listarTodas().size();
-    long concluidas = tarefaService.listarTodas().stream().filter(Tarefa::isFeita).count();
-    long pendentes = totalTarefas - concluidas;
-
-    model.addAttribute("totalTarefas", totalTarefas);
-    model.addAttribute("concluidas", concluidas);
-    model.addAttribute("pendentes", pendentes);
-
-    return "tarefas/estatisticas";
-  }
-
-  // Exibe o formulário para criar uma nova tarefa
-  @GetMapping("/nova")
-  public String novaTarefaForm(Model model) {
-    model.addAttribute("tarefa", new Tarefa());
-    return "tarefas/formulario";
-  }
-
-  // Exibe o formulário para editar uma tarefa existente
   @GetMapping("/editar/{id}")
   public String editarTarefaForm(@PathVariable int id, Model model) {
     Tarefa tarefa = tarefaService.buscarPorId(id);
@@ -54,22 +31,20 @@ public class TarefaController {
     return "tarefas/formulario";
   }
 
-  // Cria uma nova tarefa ou atualiza uma existente
   @PostMapping("/nova")
   public String salvarTarefa(@ModelAttribute Tarefa tarefa) {
     if (tarefa.getId() == null || tarefa.getId() == 0) {
-      tarefaService.inserir(tarefa); // Caso de criação
+      tarefaService.inserir(tarefa);
     } else {
-      tarefaService.atualizar(tarefa); // Caso de atualização
+      tarefaService.atualizar(tarefa);
     }
-    return "redirect:/"; // Redireciona para a página principal
+    return "redirect:/";
   }
 
-  // Alterna o status de "feito" de uma tarefa (feito/não feito)
   @PostMapping("/atualizar-feito/{id}")
   public String atualizarFeito(@PathVariable int id) {
     Tarefa tarefa = tarefaService.buscarPorId(id);
-    tarefa.setFeita(!tarefa.isFeita()); // Inverte o estado do checkbox
+    tarefa.setFeita(!tarefa.isFeita());
     tarefaService.atualizar(tarefa);
     return "redirect:/";
   }
@@ -77,10 +52,9 @@ public class TarefaController {
   @PostMapping("/deletar-feitas")
   public String deletarTarefasFeitas() {
     tarefaService.deletarFeitas();
-    return "redirect:/"; // Redireciona para a página principal
+    return "redirect:/";
   }
 
-  // Deleta uma tarefa pelo ID
   @PostMapping("/deletar/{id}")
   public String deletarTarefa(@PathVariable int id) {
     tarefaService.deletar(id);
@@ -90,7 +64,6 @@ public class TarefaController {
   @GetMapping("/debug/tarefas")
   @ResponseBody
   public List<Tarefa> listarTarefasDebug() {
-    return tarefaService.listarTodas(); // Retorna as tarefas diretamente
+    return tarefaService.listarTodas();
   }
-
 }

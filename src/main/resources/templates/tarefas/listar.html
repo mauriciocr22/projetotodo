@@ -16,7 +16,10 @@
     <h1>Lista de Tarefas</h1>
 
     <ul class="task-list">
-      <li th:each="tarefa : ${tarefas}">
+      <li th:if="${tarefas.isEmpty()}" class="empty-task-message" style="border: none;">
+        <span>Você não tem nenhuma tarefa</span>
+      </li>
+      <li th:each=" tarefa : ${tarefas}">
         <form th:action="@{/atualizar-feito/{id}(id=${tarefa.id})}" method="post" style="display:inline;">
           <label class="custom-checkbox">
             <input type="checkbox" th:checked="${tarefa.feita}" onchange="this.form.submit()">
@@ -36,7 +39,6 @@
     </ul>
 
 
-    <!-- Formulário para Nova Tarefa -->
     <form th:action="@{/nova}" class="create-task-form" method="post">
       <input type="text" name="descricao" placeholder="Nome da nova tarefa" required>
       <button type="submit" class="create-task-button">Criar Nova Tarefa</button>
