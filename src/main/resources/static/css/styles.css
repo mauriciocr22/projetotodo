@@ -1,0 +1,126 @@
+body {
+  font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  max-width: 600px;
+  background: #ffffff;
+  padding: 20px 20px 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 35px;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  /* Itens da lista dispostos verticalmente */
+  gap: 10px;
+  /* Espaço entre as tarefas */
+}
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.task-list li input[type="checkbox"] {
+  flex-shrink: 0;
+  /* O checkbox não deve encolher */
+}
+
+.task-list li span {
+  flex-grow: 1;
+  /* Faz o texto ocupar o espaço disponível */
+  word-break: break-word;
+  /* Quebra de linha, se o texto for muito longo */
+}
+
+.task-list li form,
+.task-list li a {
+  flex-shrink: 0;
+  /* Botões não devem encolher */
+  margin-left: 10px;
+  /* Espaçamento à esquerda */
+}
+
+.task-list li button {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.task-list li span.done {
+  text-decoration: line-through;
+  /* Aplica o risco ao texto */
+  color: gray;
+  /* Opcional: altera a cor para indicar tarefa concluída */
+}
+
+.delete-task-button {
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 4px;
+  border: 2px solid #fff;
+}
+
+.delete-task-button:hover {
+  background-color: #bd1111;
+}
+
+.create-task-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edit-task-anchor {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #000;
+}
+
+.create-task-button {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: 1px solid green;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+.create-task-button:hover {
+  background-color: darkgreen;
+}

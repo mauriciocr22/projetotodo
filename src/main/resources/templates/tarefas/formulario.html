@@ -2,23 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Tarefa</title>
+  <title>Editar Tarefa</title>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <section>
-    <h1 th:text="${tarefa.id == null} ? 'Nova Tarefa' : 'Editar Tarefa'"></h1>
-    <form th:action="@{/tarefas/nova}" th:object="${tarefa}" method="post">
-      <!-- Campo oculto para o ID (apenas se estiver editando) -->
-      <input type="hidden" name="id" th:if="${tarefa.id != null}" th:value="${tarefa.id}" />
+  <div class="form-container">
+    <h1 th:text="${tarefa.id == null ? 'Criar Nova Tarefa' : 'Editar Tarefa'}"></h1>
+    <form th:action="@{/nova}" th:object="${tarefa}" method="post">
+      <!-- Campo oculto para enviar o ID -->
+      <input type="hidden" name="id" th:value="${tarefa.id}" />
+
+      <!-- Campo para a descrição da tarefa -->
       <label for="descricao">Descrição:</label>
       <input type="text" id="descricao" name="descricao" th:value="${tarefa.descricao}" required />
-      <label for="feita">Feita:</label>
-      <input type="checkbox" id="feita" name="feita" th:checked="${tarefa.feita}" />
-      <button type="submit">Salvar</button>
+
+      <!-- Checkbox para marcar como feita -->
+      <label>
+        <input type="checkbox" id="feita" name="feita" th:checked="${tarefa.feita}" />
+        Feita
+      </label>
+
+      <!-- Botão para salvar -->
+      <button type="submit" class="create-task-button">Salvar</button>
     </form>
-  </section>
+  </div>
 </body>
 
 </html>
