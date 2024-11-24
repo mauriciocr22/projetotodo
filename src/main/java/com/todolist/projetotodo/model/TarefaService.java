@@ -37,7 +37,18 @@ public class TarefaService {
   public List<Tarefa> listarTodas() {
     return tarefaDAO.listarTodas()
         .stream()
-        .sorted(Comparator.comparing(Tarefa::isFeita)) // Ordena por ID
+        .sorted(Comparator.comparing(Tarefa::isFeita))
         .collect(Collectors.toList());
+  }
+
+  // Deleta todas as tarefas feitas
+  public void deletarFeitas() {
+    List<Tarefa> feitas = listarTodas().stream()
+        .filter(Tarefa::isFeita)
+        .collect(Collectors.toList());
+
+    for (Tarefa tarefa : feitas) {
+      tarefaDAO.deletar(tarefa.getId());
+    }
   }
 }

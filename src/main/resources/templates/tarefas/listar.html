@@ -15,27 +15,23 @@
   <div class="form-container">
     <h1>Lista de Tarefas</h1>
 
-    <!-- Lista de Tarefas -->
     <ul class="task-list">
-      <li th:if="${tarefas.isEmpty()}" style="border: none;">
-        <span>Você não tem tarefas criadas</span>
-      </li>
       <li th:each="tarefa : ${tarefas}">
-        <!-- Formulário para o checkbox -->
         <form th:action="@{/atualizar-feito/{id}(id=${tarefa.id})}" method="post" style="display:inline;">
-          <input type="checkbox" th:checked="${tarefa.feita}" onchange="this.form.submit()">
+          <label class="custom-checkbox">
+            <input type="checkbox" th:checked="${tarefa.feita}" onchange="this.form.submit()">
+            <span></span>
+          </label>
         </form>
 
-        <!-- Texto da tarefa com a classe condicional -->
         <span th:text="${tarefa.descricao}" th:classappend="${tarefa.feita} ? 'done' : ''"></span>
 
-        <!-- Botão para deletar a tarefa -->
-        <form th:action="@{/deletar/{id}(id=${tarefa.id})}" method="post" style="display:inline;">
-          <button class="delete-task-button" type="submit">Deletar</button>
-        </form>
-
-        <!-- Link para editar a tarefa -->
-        <a th:href="@{/editar/{id}(id=${tarefa.id})}" th:if="${!tarefa.feita}" class="edit-task-anchor">Editar</a>
+        <div class="task-buttons">
+          <a th:href="@{/editar/{id}(id=${tarefa.id})}" th:if="${!tarefa.feita}" class="edit-task-anchor">Editar</a>
+          <form th:action="@{/deletar/{id}(id=${tarefa.id})}" method="post">
+            <button class="delete-task-button" type="submit">Deletar</button>
+          </form>
+        </div>
       </li>
     </ul>
 
@@ -44,6 +40,10 @@
     <form th:action="@{/nova}" class="create-task-form" method="post">
       <input type="text" name="descricao" placeholder="Nome da nova tarefa" required>
       <button type="submit" class="create-task-button">Criar Nova Tarefa</button>
+    </form>
+
+    <form th:action="@{/deletar-feitas}" method="post" class="delete-all-done-form">
+      <button type="submit" class="delete-all-done-button">Deletar Todas as Feitas</button>
     </form>
   </div>
 </body>

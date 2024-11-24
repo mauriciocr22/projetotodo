@@ -23,9 +23,10 @@
       <input type="text" id="descricao" name="descricao" th:value="${tarefa.descricao}" required />
 
       <!-- Checkbox para marcar como feita -->
-      <label>
+      <label class="custom-checkbox">
         <input type="checkbox" id="feita" name="feita" th:checked="${tarefa.feita}" />
         Feita
+        <span></span>
       </label>
 
       <!-- Botão para salvar -->

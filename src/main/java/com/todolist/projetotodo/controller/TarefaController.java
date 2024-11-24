@@ -74,6 +74,12 @@ public class TarefaController {
     return "redirect:/";
   }
 
+  @PostMapping("/deletar-feitas")
+  public String deletarTarefasFeitas() {
+    tarefaService.deletarFeitas();
+    return "redirect:/"; // Redireciona para a página principal
+  }
+
   // Deleta uma tarefa pelo ID
   @PostMapping("/deletar/{id}")
   public String deletarTarefa(@PathVariable int id) {

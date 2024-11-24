@@ -10,8 +10,6 @@ body {
   height: 100vh;
 }
 
-h1 {}
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -34,50 +32,30 @@ h1 {}
   width: 85%;
   display: flex;
   flex-direction: column;
-  /* Itens da lista dispostos verticalmente */
   gap: 10px;
-  /* Espaço entre as tarefas */
 }
 
 .task-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
 .task-list li input[type="checkbox"] {
   flex-shrink: 0;
-  /* O checkbox não deve encolher */
 }
 
 .task-list li span {
   flex-grow: 1;
-  /* Faz o texto ocupar o espaço disponível */
   word-break: break-word;
-  /* Quebra de linha, se o texto for muito longo */
 }
 
-.task-list li form,
-.task-list li a {
-  flex-shrink: 0;
-  /* Botões não devem encolher */
-  margin-left: 10px;
-  /* Espaçamento à esquerda */
-}
-
-.task-list li button {
-  padding: 5px 10px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.task-list li span.done {
-  text-decoration: line-through;
-  /* Aplica o risco ao texto */
-  color: gray;
-  /* Opcional: altera a cor para indicar tarefa concluída */
+.task-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .delete-task-button {
@@ -85,16 +63,12 @@ h1 {}
   color: #fff;
   border-radius: 4px;
   border: 2px solid #fff;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .delete-task-button:hover {
   background-color: #bd1111;
-}
-
-.create-task-form {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .edit-task-anchor {
@@ -102,6 +76,24 @@ h1 {}
   font-size: 16px;
   font-weight: 600;
   color: black;
+  padding: 4px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-task-anchor:hover {
+  background-color: lightgray;
+}
+
+.task-list li span.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.create-task-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 input {
@@ -123,4 +115,57 @@ input {
 
 .create-task-button:hover {
   background-color: darkgreen;
+}
+
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  display: none;
+}
+
+.custom-checkbox span {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  /* Bordas arredondadas */
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.custom-checkbox input:checked+span {
+  background-color: green;
+  border-color: green;
+}
+
+.custom-checkbox input:checked+span::after {
+  content: '';
+  width: 8px;
+  height: 14px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.delete-all-done-button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.delete-all-done-button:hover {
+  background-color: #bd1111;
 }
